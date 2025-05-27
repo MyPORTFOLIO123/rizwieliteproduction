@@ -1,128 +1,209 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const year = new Date().getFullYear();
-  document.getElementById("year").textContent = year;
+const app = document.getElementById("app");
 
-  const themeToggleBtn = document.getElementById("darkModeToggle");
+let currentView = "home";
+let darkMode = true;
+let logoUrl = "";
 
-  // Check saved user preference or default to light mode
-  const currentTheme = localStorage.getItem("theme");
-  if (currentTheme === "dark") {
-    document.body.classList.add("dark");
-    themeToggleBtn.textContent = "☀️";
-  }
+const mainServices = [
+  {
+    name: "Video Editing",
+    description:
+      "All types of video editing including documentaries, weddings, YouTube automation, faceless videos, AI edits, and ads.",
+    image: "https://placehold.co/600x400/1A2F4C/FFFFFF?text=Video+Editing ",
+  },
+  {
+    name: "Graphic Design",
+    description: "Logo design, social media posts, banners, UI/UX mockups, and more.",
+    image: "https://placehold.co/600x400/1A2F4C/FFFFFF?text=Graphic+Design ",
+  },
+  {
+    name: "Content Writing",
+    description: "SEO articles, product descriptions, blog writing, and YouTube scripts.",
+    image: "https://placehold.co/600x400/1A2F4C/FFFFFF?text=Content+Writing ",
+  },
+  {
+    name: "YouTube Monetization",
+    description: "Channel setup, monetization audit, content strategy, growth consulting.",
+    image: "https://placehold.co/600x400/1A2F4C/FFFFFF?text=YouTube+Monetization ",
+  },
+];
 
-  // Toggle dark mode
-  themeToggleBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    if (document.body.classList.contains("dark")) {
-      localStorage.setItem("theme", "dark");
-      themeToggleBtn.textContent = "☀️";
-    } else {
-      localStorage.setItem("theme", "light");
-      themeToggleBtn.textContent = "🌙";
-    }
-  });
+const subCategories = {
+  "Video Editing": [
+    { name: "Documentaries", price: "$299+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
+    { name: "Wedding", price: "$399+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
+    { name: "Faceless YouTube", price: "$199+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
+    { name: "Advertising", price: "$249+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
+    { name: "YouTube Automation", price: "$349+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
+    { name: "War Videos", price: "$299+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
+    { name: "Gun Videos", price: "$299+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
+    { name: "Mama Videos", price: "$199+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
+    { name: "Tech Videos", price: "$249+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
+    { name: "Sports / Football", price: "$299+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
+  ],
+  "Graphic Design": [
+    { name: "Logo Design", price: "$149+", preview: "https://placehold.co/600x400/333/FFF.png?text=Logo+Design ", type: "image" },
+    { name: "Social Media Posts", price: "$79+", preview: "https://placehold.co/600x400/333/FFF.png?text=Social+Posts ", type: "image" },
+    { name: "Flyers/Banners", price: "$99+", preview: "https://placehold.co/600x400/333/FFF.png?text=Banner+Design ", type: "image" }
+  ],
+  "Content Writing": [
+    { name: "SEO Articles", price: "$49/page", preview: "https://placehold.co/600x400/333/FFF.png?text=SEO+Article ", type: "image" },
+    { name: "Product Descriptions", price: "$39/item", preview: "https://placehold.co/600x400/333/FFF.png?text=Product+Descriptions ", type: "image" },
+    { name: "YouTube Scripts", price: "$59/video", preview: "https://placehold.co/600x400/333/FFF.png?text=YouTube+Script ", type: "image" }
+  ],
+  "YouTube Monetization": [
+    { name: "Channel Setup", price: "$199+", preview: "https://placehold.co/600x400/333/FFF.png?text=Channel+Setup ", type: "image" },
+    { name: "Monetization Audit", price: "$99+", preview: "https://placehold.co/600x400/333/FFF.png?text=Audit ", type: "image" },
+    { name: "Growth Consultation", price: "$129/hr", preview: "https://placehold.co/600x400/333/FFF.png?text=Growth+Consulting ", type: "image" }
+  ]
+};
 
-  const services = [
-    {
-      id: "video",
-      title: "Video Editing",
-      image: "https://placehold.co/400x300?text=Video+Editing ",
-      subcategories: [
-        { name: "Documentary Style", price: "$250", image: "https://placehold.co/300x200 " },
-        { name: "Faceless/Animated Videos", price: "$180", image: "https://placehold.co/300x200 " },
-        { name: "B-Roll & Stock Integration", price: "$100", image: "https://placehold.co/300x200 " },
-        { name: "Advertisements & Commercials", price: "$300", image: "https://placehold.co/300x200 " },
-        { name: "Wedding Films", price: "$350", image: "https://placehold.co/300x200 " },
-        { name: "YouTube Automation Packages", price: "$200", image: "https://placehold.co/300x200 " },
-        { name: "AI-Enhanced Videos", price: "$220", image: "https://placehold.co/300x200 " },
-      ],
-    },
-    {
-      id: "writing",
-      title: "Content Writing",
-      image: "https://placehold.co/400x300?text=Content+Writing ",
-      subcategories: [
-        { name: "SEO Blog Posts", price: "$50/500 words", image: "https://placehold.co/300x200 " },
-        { name: "Sales Copy & Landing Pages", price: "$120", image: "https://placehold.co/300x200 " },
-        { name: "Product Descriptions", price: "$30/item", image: "https://placehold.co/300x200 " },
-        { name: "Press Releases", price: "$150", image: "https://placehold.co/300x200 " },
-        { name: "Whitepapers & E-Books", price: "$400", image: "https://placehold.co/300x200 " },
-        { name: "Email Campaign Sequences", price: "$100", image: "https://placehold.co/300x200 " },
-        { name: "Social Media Captions", price: "$20/post", image: "https://placehold.co/300x200 " },
-      ],
-    },
-    {
-      id: "design",
-      title: "Graphics Designing",
-      image: "https://placehold.co/400x300?text=Graphics+Designing ",
-      subcategories: [
-        { name: "Logo & Branding Kits", price: "$200", image: "https://placehold.co/300x200 " },
-        { name: "Social Media Graphics", price: "$80/package", image: "https://placehold.co/300x200 " },
-        { name: "Infographics & Data Viz", price: "$150", image: "https://placehold.co/300x200 " },
-        { name: "Brochures & Flyers", price: "$100", image: "https://placehold.co/300x200 " },
-        { name: "Business Cards & Stationery", price: "$70", image: "https://placehold.co/300x200 " },
-        { name: "Banner & Ad Creative", price: "$120", image: "https://placehold.co/300x200 " },
-        { name: "Presentation Decks", price: "$180", image: "https://placehold.co/300x200 " },
-      ],
-    },
-    {
-      id: "web",
-      title: "Website Creation",
-      image: "https://placehold.co/400x300?text=Website+Creation ",
-      subcategories: [
-        { name: "Landing Pages & One-Pagers", price: "$300", image: "https://placehold.co/300x200 " },
-        { name: "E-Commerce Stores", price: "$800", image: "https://placehold.co/300x200 " },
-        { name: "Portfolio & Blog Sites", price: "$400", image: "https://placehold.co/300x200 " },
-        { name: "Custom Web Applications", price: "$1,200", image: "https://placehold.co/300x200 " },
-        { name: "Responsive Redesigns", price: "$500", image: "https://placehold.co/300x200 " },
-        { name: "CMS Integration", price: "$600", image: "https://placehold.co/300x200 " },
-        { name: "Maintenance & Updates", price: "$100/month", image: "https://placehold.co/300x200 " },
-      ],
-    },
-  ];
+function navigate(category) {
+  currentView = category;
+  render();
+}
 
-  const serviceGrid = document.getElementById("service-grid");
-  const subcategorySection = document.getElementById("subcategories");
-  const subcategoryTitle = document.getElementById("subcategory-title");
-  const subcategoryList = document.getElementById("subcategory-list");
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth" });
+}
 
-  services.forEach((service) => {
-    const card = document.createElement("div");
-    card.className =
-      "cursor-pointer border p-4 rounded-lg shadow-sm hover:shadow transition-all";
-    card.innerHTML = `
-      <img src="${service.image}" alt="${service.title}" class="rounded w-full h-40 object-cover mb-4" />
-      <h3 class="font-semibold text-lg">${service.title}</h3>
-    `;
-    card.onclick = () => showSubcategories(service);
-    serviceGrid.appendChild(card);
-  });
+function render() {
+  app.innerHTML = "";
 
-  function showSubcategories(service) {
-    subcategoryTitle.textContent = service.title;
-    subcategoryList.innerHTML = "";
-
-    service.subcategories.forEach((sub) => {
-      const item = document.createElement("div");
-      item.className = "bg-gray-50 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow dark:bg-gray-800";
-      item.innerHTML = `
-        <img src="${sub.image}" alt="${sub.name}" class="w-full h-48 object-cover" />
-        <div class="p-4">
-          <h4 class="font-semibold">${sub.name}</h4>
-          <div class="flex justify-between items-center mt-2">
-            <span class="text-sm text-gray-600 dark:text-gray-400">${sub.price}</span>
-            <button onclick="window.open('https://wa.me/923325318695 ', '_blank')"
-              class="bg-black text-white text-sm px-3 py-1 rounded hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 transition">
-              Activate
-            </button>
+  if (currentView === "home") {
+    // Render Home View
+    const homeHTML = `
+      <section class="services-section">
+        <div class="container">
+          <h2 class="section-title">Our Services</h2>
+          <div class="card-grid">
+            ${mainServices.map(service => `
+              <div class="service-card" onclick="navigate('${service.name}')">
+                <img src="${service.image}" alt="${service.name}" />
+                <div class="card-body">
+                  <h3>${service.name}</h3>
+                  <p>${service.description}</p>
+                </div>
+              </div>
+            `).join("")}
           </div>
         </div>
-      `;
-      subcategoryList.appendChild(item);
-    });
+      </section>
 
-    subcategorySection.classList.remove("hidden");
-    document.getElementById("services").scrollIntoView({ behavior: "smooth" });
+      <section class="testimonials-section">
+        <div class="container">
+          <h2 class="section-title">What Clients Say</h2>
+          <div class="testimonial-cards">
+            <div class="testimonial">“Rizwi's edits boosted my YouTube revenue by 200%!”</div>
+            <div class="testimonial">“Delivered before deadline with perfect quality.”</div>
+            <div class="testimonial">“The AI editing package saved me 10 hours a week.”</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="clients-section">
+        <div class="container">
+          <h2 class="section-title">Trusted By</h2>
+          <div class="client-logos">
+            <img src="https://placehold.co/150x50/333/FFF.png?text=Client+1 " alt="Client 1" />
+            <img src="https://placehold.co/150x50/333/FFF.png?text=Client+2 " alt="Client 2" />
+            <img src="https://placehold.co/150x50/333/FFF.png?text=Client+3 " alt="Client 3" />
+            <img src="https://placehold.co/150x50/333/FFF.png?text=Client+4 " alt="Client 4" />
+          </div>
+        </div>
+      </section>
+
+      <section id="profile" class="profile-section">
+        <div class="container">
+          <h2>About Me</h2>
+          <div class="profile-content">
+            <img src="https://placehold.co/400x400/333/FFF.png?text=Rizwi " alt="Rizwi Gul" />
+            <p>I’m Rizwi, a creative freelancer with over 5 years of experience helping creators and brands go viral. My mission is to deliver high-quality content quickly and affordably.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact-section">
+        <div class="container">
+          <h2>Get in Touch</h2>
+          <form class="contact-form">
+            <input type="text" placeholder="Name" />
+            <input type="email" placeholder="Email" />
+            <textarea rows="5" placeholder="Tell us about your project..."></textarea>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </section>
+    `;
+    app.innerHTML = homeHTML;
+  } else {
+    // Render Category Page
+    const services = subCategories[currentView];
+    const cards = services.map(service => `
+      <div class="service-card">
+        <iframe src="${service.preview}?autoplay=1&loop=1&title=0" allowfullscreen></iframe>
+        <div class="card-body">
+          <h3>${service.name}</h3>
+          <p class="price">${service.price}</p>
+          <div class="cta-buttons">
+            <a href="https://wa.me/+923325318695?text=Hi%20RizwiElite ,%20I%20want%20${encodeURIComponent(service.name)}!" target="_blank" class="whatsapp">WhatsApp Now</a>
+            <a href="mailto:rizwigul@gmail.com?subject=${encodeURIComponent(service.name)} Inquiry" class="email">Email Inquiry</a>
+          </div>
+        </div>
+      </div>
+    `).join("");
+
+    const backBtn = `<button onclick="navigate('home')" class="back-btn">← Back to Home</button>`;
+    const section = `
+      <section class="category-page">
+        ${backBtn}
+        <div class="container">
+          <h2>RizwiElite-Production | ${currentView}</h2>
+          <div class="card-grid">
+            ${cards}
+          </div>
+        </div>
+      </section>
+    `;
+    app.innerHTML = section;
+  }
+
+  // Update Theme
+  document.body.className = darkMode ? "dark" : "light";
+
+  // Handle Logo Preview
+  const logoImg = document.querySelector("#site-title img");
+  if (logoUrl && logoImg) {
+    logoImg.src = logoUrl;
+  }
+}
+
+document.getElementById("logoInput")?.addEventListener("change", function () {
+  const file = this.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      logoUrl = e.target.result;
+      const title = document.getElementById("site-title");
+      if (!title.querySelector("img")) {
+        const img = document.createElement("img");
+        img.id = "logo-img";
+        img.alt = "Logo";
+        title.prepend(img);
+      }
+      title.querySelector("img").src = logoUrl;
+    };
+    reader.readAsDataURL(file);
   }
 });
+
+document.getElementById("themeToggle").addEventListener("click", () => {
+  darkMode = !darkMode;
+  render();
+});
+
+window.navigate = navigate;
+window.scrollToSection = scrollToSection;
+
+render();
