@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RizwiELITE PRODUCTION – Premium Freelance Video, Writing, Design & Web</title>
+  <meta name="description" content="Professional freelancing services—video editing, content writing, graphics design & website creation. Fast turnaround, competitive prices. Chat on WhatsApp!" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+
+  <!-- Dark Mode Toggle -->
+  <button id="darkModeToggle" class="fixed top-4 right-4 z-50 p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-black dark:text-white shadow-md">
+    🌙
+  </button>
+
+  <!-- Header -->
+  <header class="bg-white shadow-md fixed w-full top-0 z-40 dark:bg-gray-800 dark:shadow-none">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">RizwiElite</h1>
+      <nav class="space-x-6 hidden md:flex">
+        <a href="#services" class="hover:text-gray-600 dark:hover:text-gray-300 transition">Services</a>
+        <a href="#process" class="hover:text-gray-600 dark:hover:text-gray-300 transition">Process</a>
+        <a href="#pricing" class="hover:text-gray-600 dark:hover:text-gray-300 transition">Pricing</a>
+        <a href="#contact" class="hover:text-gray-600 dark:hover:text-gray-300 transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="py-24 bg-gradient-to-r from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 text-center">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6">Transform Your Vision Into Reality</h1>
+      <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">
+        Professional freelancing services for video editing, content writing, graphics designing, and website creation.
+      </p>
+      <a href="#services" class="inline-block bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200 transition">
+        Explore Our Services
+      </a>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section id="services" class="py-16 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="service-grid"></div>
+
+      <!-- Subcategories Section -->
+      <div id="subcategories" class="mt-16 hidden">
+        <h3 id="subcategory-title" class="text-2xl font-bold mb-6 text-center"></h3>
+        <div id="subcategory-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process" class="py-16 bg-gray-50 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Our Process</h2>
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="md:w-1/4 text-center mb-8 md:mb-0">
+          <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 dark:bg-white dark:text-black">1</div>
+          <h3 class="font-semibold mb-2">Consultation</h3>
+          <p>We discuss goals & assets.</p>
+        </div>
+        <div class="md:w-1/4 text-center mb-8 md:mb-0">
+          <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 dark:bg-white dark:text-black">2</div>
+          <h3 class="font-semibold mb-2">Draft & Review</h3>
+          <p>First cut delivered in 3–5 days.</p>
+        </div>
+        <div class="md:w-1/4 text-center mb-8 md:mb-0">
+          <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 dark:bg-white dark:text-black">3</div>
+          <h3 class="font-semibold mb-2">Revisions</h3>
+          <p>Up to 3 free rounds.</p>
+        </div>
+        <div class="md:w-1/4 text-center">
+          <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 dark:bg-white dark:text-black">4</div>
+          <h3 class="font-semibold mb-2">Final Export</h3>
+          <p>Hand-off in any format, plus backup.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Overview -->
+  <section id="pricing" class="py-16 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Pricing Overview</h2>
+      <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border-collapse dark:bg-gray-800">
+          <thead>
+            <tr class="bg-gray-100 dark:bg-gray-700">
+              <th class="px-6 py-3 text-left">Category</th>
+              <th class="px-6 py-3 text-right">Starting Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b dark:border-gray-700">
+              <td class="px-6 py-4">Video Editing</td>
+              <td class="px-6 py-4 text-right">$100</td>
+            </tr>
+            <tr class="border-b dark:border-gray-700">
+              <td class="px-6 py-4">Content Writing</td>
+              <td class="px-6 py-4 text-right">$20</td>
+            </tr>
+            <tr class="border-b dark:border-gray-700">
+              <td class="px-6 py-4">Graphics Designing</td>
+              <td class="px-6 py-4 text-right">$70</td>
+            </tr>
+            <tr class="border-b dark:border-gray-700">
+              <td class="px-6 py-4">Website Creation</td>
+              <td class="px-6 py-4 text-right">$300</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-16 bg-gray-50 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Get Started Today</h2>
+      <div class="max-w-3xl mx-auto">
+        <form class="bg-white p-8 rounded-lg shadow-md dark:bg-gray-900 dark:border dark:border-gray-700">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label class="block mb-2 text-sm font-medium">Name</label>
+              <input type="text" class="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-black dark:bg-gray-800 dark:border-gray-600 dark:focus:ring-white" required />
+            </div>
+            <div>
+              <label class="block mb-2 text-sm font-medium">Email</label>
+              <input type="email" class="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-black dark:bg-gray-800 dark:border-gray-600 dark:focus:ring-white" required />
+            </div>
+          </div>
+          <div class="mb-6">
+            <label class="block mb-2 text-sm font-medium">Service</label>
+            <select class="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-black dark:bg-gray-800 dark:border-gray-600 dark:focus:ring-white">
+              <option>Select a service</option>
+              <option>Video Editing</option>
+              <option>Content Writing</option>
+              <option>Graphics Designing</option>
+              <option>Website Creation</option>
+            </select>
+          </div>
+          <div class="mb-6">
+            <label class="block mb-2 text-sm font-medium">Message</label>
+            <textarea rows="4" class="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-black dark:bg-gray-800 dark:border-gray-600 dark:focus:ring-white" required></textarea>
+          </div>
+          <button type="submit" class="bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 transition">
+            Send Message
+          </button>
+        </form>
+        <div class="mt-8 text-center space-y-4">
+          <div>
+            <a href="mailto:rizwigul@gmail.com" class="text-gray-600 hover:underline dark:text-gray-300">rizwigul@gmail.com</a>
+          </div>
+          <button onclick="window.open('https://wa.me/923325318695 ', '_blank')"
+            class="bg-green-500 text-white px-6 py-3 rounded-full hover:bg-green-600 transition">
+            Chat on WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12 dark:bg-gray-900 dark:text-white">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">RizwiElite</h3>
+          <p class="text-gray-400 dark:text-gray-500">Premium freelancing services for video editing, content writing, graphics designing, and website creation.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-gray-400 dark:text-gray-500">
+            <li><a href="#home" class="hover:text-white dark:hover:text-gray-300 transition">Home</a></li>
+            <li><a href="#services" class="hover:text-white dark:hover:text-gray-300 transition">Services</a></li>
+            <li><a href="#process" class="hover:text-white dark:hover:text-gray-300 transition">Process</a></li>
+            <li><a href="#pricing" class="hover:text-white dark:hover:text-gray-300 transition">Pricing</a></li>
+            <li><a href="#contact" class="hover:text-white dark:hover:text-gray-300 transition">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Connect With Us</h4>
+          <ul class="space-y-2 text-gray-400 dark:text-gray-500">
+            <li><a href="#" class="hover:text-white dark:hover:text-gray-300 transition">Facebook</a></li>
+            <li><a href="#" class="hover:text-white dark:hover:text-gray-300 transition">Instagram</a></li>
+            <li><a href="#" class="hover:text-white dark:hover:text-gray-300 transition">LinkedIn</a></li>
+            <li><a href="#" class="hover:text-white dark:hover:text-gray-300 transition">Twitter</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4">Contact Info</h4>
+          <ul class="space-y-2 text-gray-400 dark:text-gray-500">
+            <li>Email: <a href="mailto:rizwigul@gmail.com" class="hover:text-white dark:hover:text-gray-300">rizwigul@gmail.com</a></li>
+            <li>Phone: <a href="tel:+923325318695" class="hover:text-white dark:hover:text-gray-300">+92 332 531 8695</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400 text-sm dark:border-gray-700">
+        &copy; <span id="year"></span> RizwiElite Production. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
