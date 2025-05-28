@@ -1,218 +1,299 @@
 :root {
-  --dark-bg: #0A1A2F;
-  --light-bg: #0E243F;
+  --primary: #0A1A2F;
   --accent: #D4AF37;
   --cta: #00F5FF;
-  --text: white;
+  --light-bg: #f9fafb;
+  --dark-overlay: rgba(10, 26, 47, 0.9);
 }
 
 body.dark {
-  background-color: var(--dark-bg);
-  color: var(--text);
+  background-color: var(--primary);
+  color: white;
+  font-family: 'Satoshi', sans-serif;
 }
 
 body.light {
-  background-color: #1f2937;
-  color: #f9fafb;
+  background-color: var(--light-bg);
+  color: #0A1A2F;
+  font-family: 'Satoshi', sans-serif;
 }
 
 * {
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-body {
   margin: 0;
-  transition: background-color 0.3s ease;
-  background-image: url('https://picsum.photos/1920/1080 ');
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: -1;
-}
-
-.logo-upload {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 1000;
-}
-
-.logo-upload input[type="file"] {
-  display: none;
-}
-
-.logo-upload label {
-  cursor: pointer;
-  text-decoration: underline;
-  font-size: 14px;
-  color: white;
-}
-
-.logo-upload img {
-  height: 32px;
-}
-
-.sticky-header {
-  position: sticky;
-  top: 0;
-  background: rgba(10, 26, 47, 0.8);
-  backdrop-filter: blur(10px);
-  padding: 1rem;
-  z-index: 999;
+  padding: 0;
+  scroll-behavior: smooth;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.logo {
+  font-family: 'Clash Display', cursive;
+  font-size: 1.8rem;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.text-accent {
+  color: var(--accent);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  background: var(--dark-overlay);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+  padding: 1rem 0;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
   align-items: center;
 }
-
-.site-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.main-nav {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.main-nav a,
-.main-nav button {
+.main-nav a {
   color: white;
   text-decoration: none;
-  font-size: 0.9rem;
-  transition: color 0.3s;
+  transition: color 0.3s ease;
 }
-
 .main-nav a:hover {
   color: var(--accent);
 }
 
 .hero {
-  padding: 6rem 2rem 2rem;
+  min-height: 100vh;
+  background: url('https://picsum.photos/1920/1080 ') no-repeat center center / cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--dark-overlay);
+}
+.hero h1 {
+  font-family: 'Clash Display', cursive;
+  font-size: 2.5rem;
+  color: white;
+  z-index: 10;
+  animation: fadeInUp 1s ease;
+}
+.hero p {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  z-index: 10;
+  animation: fadeInUp 1s ease 0.3s backwards;
+}
+.cta-btn {
+  background: var(--cta);
+  color: var(--primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 1rem;
+  transition: transform 0.3s ease;
+}
+.cta-btn:hover {
+  transform: scale(1.05);
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
   text-align: center;
 }
 
-.hero h2 {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-}
-
-.hero p {
-  max-width: 600px;
-  margin: 0 auto;
-  opacity: 0.8;
-}
-
-.card-grid {
+.card-grid,
+.subcategory-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
-  max-width: 1000px;
-  margin: 0 auto;
 }
 
-.service-card {
-  background: rgba(14, 36, 63, 0.8);
+.card {
+  background: #1e2d4a;
   border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
-  border: 1px solid #2d3748;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
-
-.service-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+.card:hover {
+  transform: translateY(-5px);
 }
-
-.service-card img {
+.card img,
+.card iframe {
   width: 100%;
-  height: 150px;
+  height: 200px;
   object-fit: cover;
 }
-
-.service-card .card-body {
+.card-body {
   padding: 1rem;
 }
-
-.service-card h3 {
+.card-body h3 {
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
-
-.service-card p {
-  font-size: 0.9rem;
-  color: #ccc;
+.price {
+  color: var(--cta);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
 }
-
-.cta-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-}
-
-.cta-buttons a {
-  flex: 1;
-  text-align: center;
-  padding: 0.5rem 1rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: bold;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-.cta-buttons .whatsapp {
+.activate-btn {
   background: var(--cta);
-  color: #0A1A2F;
+  color: var(--primary);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 999px;
+  font-weight: bold;
+  width: 100%;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s;
 }
-
-.cta-buttons .email {
-  border: 1px solid var(--accent);
-  color: white;
-}
-
-.cta-buttons .whatsapp:hover {
-  box-shadow: 0 4px 12px rgba(0, 245, 255, 0.4);
-}
-
-.cta-buttons .email:hover {
-  background: var(--accent);
-  color: #0A1A2F;
+.activate-btn:hover {
+  background: #00cccc;
 }
 
 .floating-whatsapp {
   position: fixed;
   bottom: 20px;
   right: 20px;
+  background: var(--cta);
+  color: var(--primary);
   width: 56px;
   height: 56px;
-  background: var(--cta);
-  color: #0A1A2F;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 245, 255, 0.4);
-  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,245,255,0.4);
+  z-index: 999;
+  transition: transform 0.3s ease;
+}
+.floating-whatsapp:hover {
+  transform: scale(1.1);
 }
 
-.floating-whatsapp svg {
-  width: 24px;
-  height: 24px;
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal.hidden {
+  display: none;
+}
+.modal-content {
+  background: var(--primary);
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  animation: fadeInDown 0.4s ease;
+}
+.modal-content a {
+  display: block;
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  background: var(--cta);
+  color: var(--primary);
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+.modal-content a:hover {
+  background: #00cccc;
+}
+
+.footer {
+  background: var(--primary);
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+.footer .social-icons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #888;
+  border-radius: 34px;
+  transition: 0.4s;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+input:checked + .slider {
+  background-color: var(--accent);
+}
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fadeInUp {
+  animation: fadeInUp 0.5s ease forwards;
+}
+.fadeInDown {
+  animation: fadeInDown 0.5s ease forwards;
 }

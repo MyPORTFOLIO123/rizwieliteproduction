@@ -1,209 +1,154 @@
 const app = document.getElementById("app");
-
-let currentView = "home";
 let darkMode = true;
-let logoUrl = "";
 
+// Main services
 const mainServices = [
-  {
-    name: "Video Editing",
-    description:
-      "All types of video editing including documentaries, weddings, YouTube automation, faceless videos, AI edits, and ads.",
-    image: "https://placehold.co/600x400/1A2F4C/FFFFFF?text=Video+Editing ",
-  },
-  {
-    name: "Graphic Design",
-    description: "Logo design, social media posts, banners, UI/UX mockups, and more.",
-    image: "https://placehold.co/600x400/1A2F4C/FFFFFF?text=Graphic+Design ",
-  },
-  {
-    name: "Content Writing",
-    description: "SEO articles, product descriptions, blog writing, and YouTube scripts.",
-    image: "https://placehold.co/600x400/1A2F4C/FFFFFF?text=Content+Writing ",
-  },
-  {
-    name: "YouTube Monetization",
-    description: "Channel setup, monetization audit, content strategy, growth consulting.",
-    image: "https://placehold.co/600x400/1A2F4C/FFFFFF?text=YouTube+Monetization ",
-  },
+  { name: "Video Editing", description: "Documentaries, Wedding, Faceless, AI Edits, Ads, YouTube Automation", image: "https://placehold.co/600x400/1A2F4C/FFFFFF?text=Video+Editing " },
+  { name: "Graphic Design", description: "Logos, Banners, UI/UX, Social Media Posts", image: "https://placehold.co/600x400/1A2F4C/FFFFFF?text=Graphic+Design " },
+  { name: "Content Writing", description: "SEO Articles, Blog Writing, YouTube Scripts", image: "https://placehold.co/600x400/1A2F4C/FFFFFF?text=Content+Writing " },
+  { name: "YouTube Monetization", description: "Channel Setup, Growth Strategy, Audit", image: "https://placehold.co/600x400/1A2F4C/FFFFFF?text=YouTube+Monetization " }
 ];
 
+// Subcategories per service
 const subCategories = {
   "Video Editing": [
-    { name: "Documentaries", price: "$299+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
-    { name: "Wedding", price: "$399+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
-    { name: "Faceless YouTube", price: "$199+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
-    { name: "Advertising", price: "$249+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
-    { name: "YouTube Automation", price: "$349+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
-    { name: "War Videos", price: "$299+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
-    { name: "Gun Videos", price: "$299+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
-    { name: "Mama Videos", price: "$199+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
-    { name: "Tech Videos", price: "$249+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
-    { name: "Sports / Football", price: "$299+", preview: "https://player.vimeo.com/video/769798708 ", type: "video" },
+    { name: "Documentaries", price: "$299+", preview: "https://player.vimeo.com/video/769798708?autoplay=1&loop=1 " },
+    { name: "Wedding Videos", price: "$399+", preview: "https://player.vimeo.com/video/769798708?autoplay=1&loop=1 " },
+    { name: "Faceless Shorts", price: "$199+", preview: "https://player.vimeo.com/video/769798708?autoplay=1&loop=1 " },
+    { name: "Tech Explained", price: "$249+", preview: "https://player.vimeo.com/video/769798708?autoplay=1&loop=1 " },
+    { name: "Sports Highlights", price: "$299+", preview: "https://player.vimeo.com/video/769798708?autoplay=1&loop=1 " },
+    { name: "Mama/Family Vlogs", price: "$199+", preview: "https://player.vimeo.com/video/769798708?autoplay=1&loop=1 " },
+    { name: "Gun/Vlog Edits", price: "$299+", preview: "https://player.vimeo.com/video/769798708?autoplay=1&loop=1 " }
   ],
   "Graphic Design": [
-    { name: "Logo Design", price: "$149+", preview: "https://placehold.co/600x400/333/FFF.png?text=Logo+Design ", type: "image" },
-    { name: "Social Media Posts", price: "$79+", preview: "https://placehold.co/600x400/333/FFF.png?text=Social+Posts ", type: "image" },
-    { name: "Flyers/Banners", price: "$99+", preview: "https://placehold.co/600x400/333/FFF.png?text=Banner+Design ", type: "image" }
+    { name: "Logo Design", price: "$149+", preview: "https://placehold.co/600x400/333/FFF.png?text=Logo+Design " },
+    { name: "Social Media Post", price: "$79+", preview: "https://placehold.co/600x400/333/FFF.png?text=Social+Post " },
+    { name: "Banner Design", price: "$99+", preview: "https://placehold.co/600x400/333/FFF.png?text=Banner+Design " },
+    { name: "UI/UX Mockup", price: "$199+/hr", preview: "https://placehold.co/600x400/333/FFF.png?text=UI+Mockup " }
   ],
   "Content Writing": [
-    { name: "SEO Articles", price: "$49/page", preview: "https://placehold.co/600x400/333/FFF.png?text=SEO+Article ", type: "image" },
-    { name: "Product Descriptions", price: "$39/item", preview: "https://placehold.co/600x400/333/FFF.png?text=Product+Descriptions ", type: "image" },
-    { name: "YouTube Scripts", price: "$59/video", preview: "https://placehold.co/600x400/333/FFF.png?text=YouTube+Script ", type: "image" }
+    { name: "SEO Article", price: "$49/page", preview: "https://placehold.co/600x400/333/FFF.png?text=SEO+Article " },
+    { name: "Product Descriptions", price: "$39/item", preview: "https://placehold.co/600x400/333/FFF.png?text=Descriptions " },
+    { name: "YouTube Script", price: "$59/video", preview: "https://placehold.co/600x400/333/FFF.png?text=Script " }
   ],
   "YouTube Monetization": [
-    { name: "Channel Setup", price: "$199+", preview: "https://placehold.co/600x400/333/FFF.png?text=Channel+Setup ", type: "image" },
-    { name: "Monetization Audit", price: "$99+", preview: "https://placehold.co/600x400/333/FFF.png?text=Audit ", type: "image" },
-    { name: "Growth Consultation", price: "$129/hr", preview: "https://placehold.co/600x400/333/FFF.png?text=Growth+Consulting ", type: "image" }
+    { name: "Channel Setup", price: "$199+", preview: "https://placehold.co/600x400/333/FFF.png?text=Channel+Setup " },
+    { name: "Monetization Audit", price: "$99+", preview: "https://placehold.co/600x400/333/FFF.png?text=Audit " },
+    { name: "Growth Consultation", price: "$129/hr", preview: "https://placehold.co/600x400/333/FFF.png?text=Growth+Consulting " }
   ]
 };
 
-function navigate(category) {
-  currentView = category;
-  render();
-}
+// Inject SVG Logo
+document.getElementById("logo-icon").innerHTML = `
+<svg viewBox="0 0 50 50" width="32" height="32">
+  <circle cx="25" cy="25" r="24" fill="none" stroke="var(--accent)" stroke-width="2"/>
+  <text x="10" y="32" fill="var(--cta)" font-size="24" font-weight="bold">R</text>
+</svg>
+`;
 
-function scrollToSection(id) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth" });
-}
-
-function render() {
-  app.innerHTML = "";
-
-  if (currentView === "home") {
-    // Render Home View
-    const homeHTML = `
-      <section class="services-section">
-        <div class="container">
-          <h2 class="section-title">Our Services</h2>
-          <div class="card-grid">
-            ${mainServices.map(service => `
-              <div class="service-card" onclick="navigate('${service.name}')">
-                <img src="${service.image}" alt="${service.name}" />
-                <div class="card-body">
-                  <h3>${service.name}</h3>
-                  <p>${service.description}</p>
-                </div>
-              </div>
-            `).join("")}
-          </div>
-        </div>
-      </section>
-
-      <section class="testimonials-section">
-        <div class="container">
-          <h2 class="section-title">What Clients Say</h2>
-          <div class="testimonial-cards">
-            <div class="testimonial">“Rizwi's edits boosted my YouTube revenue by 200%!”</div>
-            <div class="testimonial">“Delivered before deadline with perfect quality.”</div>
-            <div class="testimonial">“The AI editing package saved me 10 hours a week.”</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="clients-section">
-        <div class="container">
-          <h2 class="section-title">Trusted By</h2>
-          <div class="client-logos">
-            <img src="https://placehold.co/150x50/333/FFF.png?text=Client+1 " alt="Client 1" />
-            <img src="https://placehold.co/150x50/333/FFF.png?text=Client+2 " alt="Client 2" />
-            <img src="https://placehold.co/150x50/333/FFF.png?text=Client+3 " alt="Client 3" />
-            <img src="https://placehold.co/150x50/333/FFF.png?text=Client+4 " alt="Client 4" />
-          </div>
-        </div>
-      </section>
-
-      <section id="profile" class="profile-section">
-        <div class="container">
-          <h2>About Me</h2>
-          <div class="profile-content">
-            <img src="https://placehold.co/400x400/333/FFF.png?text=Rizwi " alt="Rizwi Gul" />
-            <p>I’m Rizwi, a creative freelancer with over 5 years of experience helping creators and brands go viral. My mission is to deliver high-quality content quickly and affordably.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="contact-section">
-        <div class="container">
-          <h2>Get in Touch</h2>
-          <form class="contact-form">
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <textarea rows="5" placeholder="Tell us about your project..."></textarea>
-            <button type="submit">Send Message</button>
-          </form>
-        </div>
-      </section>
-    `;
-    app.innerHTML = homeHTML;
+function navigate(page) {
+  const hero = document.getElementById("hero");
+  if (page === 'home') {
+    hero.style.display = 'flex';
+    app.innerHTML = '';
   } else {
-    // Render Category Page
-    const services = subCategories[currentView];
-    const cards = services.map(service => `
-      <div class="service-card">
-        <iframe src="${service.preview}?autoplay=1&loop=1&title=0" allowfullscreen></iframe>
-        <div class="card-body">
-          <h3>${service.name}</h3>
-          <p class="price">${service.price}</p>
-          <div class="cta-buttons">
-            <a href="https://wa.me/+923325318695?text=Hi%20RizwiElite ,%20I%20want%20${encodeURIComponent(service.name)}!" target="_blank" class="whatsapp">WhatsApp Now</a>
-            <a href="mailto:rizwigul@gmail.com?subject=${encodeURIComponent(service.name)} Inquiry" class="email">Email Inquiry</a>
+    hero.style.display = 'none';
+    app.innerHTML = '';
+
+    if (page === 'services') {
+      const cards = mainServices.map(s => `
+        <div class="card fadeInUp" onclick="openSub('${s.name}')">
+          <img src="${s.image}" alt="${s.name}">
+          <div class="card-body">
+            <h3>${s.name}</h3>
+            <p>${s.description}</p>
           </div>
         </div>
-      </div>
-    `).join("");
-
-    const backBtn = `<button onclick="navigate('home')" class="back-btn">← Back to Home</button>`;
-    const section = `
-      <section class="category-page">
-        ${backBtn}
-        <div class="container">
-          <h2>RizwiElite-Production | ${currentView}</h2>
-          <div class="card-grid">
-            ${cards}
+      `).join('');
+      app.innerHTML = `<h2 class="section-title mb-8 fadeInUp" style="animation-delay: 0.2s">Choose A Service</h2><div class="card-grid">${cards}</div>`;
+    } else if (subCategories[page]) {
+      const subs = subCategories[page].map((sc, i) => `
+        <div class="card fadeInUp" onclick="showPlanOptions('${encodeURIComponent(sc.name)}', '${sc.price}', '${page.replace(/\s+/g, '')}${i}')" style="animation-delay: ${i * 0.1}s;">
+          <iframe src="${sc.preview}" allowfullscreen title="${sc.name}"></iframe>
+          <div class="card-body">
+            <h3>${sc.name}</h3>
+            <p class="price">${sc.price}</p>
           </div>
         </div>
-      </section>
-    `;
-    app.innerHTML = section;
-  }
-
-  // Update Theme
-  document.body.className = darkMode ? "dark" : "light";
-
-  // Handle Logo Preview
-  const logoImg = document.querySelector("#site-title img");
-  if (logoUrl && logoImg) {
-    logoImg.src = logoUrl;
-  }
+      `).join('');
+      app.innerHTML = `
+        <h2 class="section-title fadeInUp" style="animation-delay: 0.2s;">${page} Styles</h2>
+        <div class="subcategory-grid">${subs}</div>
+      `;
+    } else if (page === 'portfolio') {
+      const portfolioItems = [
+        { title: "Wedding Edit", desc: "Delivered in 48 hours with cinematic effects." },
+        { title: "YouTube Automation", desc: "Template-based editing for fast delivery." },
+        { title: "Logo Rebrand", desc: "Brand identity for Dubai Restaurant" }
+      ];
+      const cards = portfolioItems.map(p => `
+        <div class="card fadeInUp">
+          <img src="https://picsum.photos/seed/ ${p.title}/600/400" alt="${p.title}" />
+          <div class="card-body">
+            <h3>${p.title}</h3>
+            <p>${p.desc}</p>
+          </div>
+        </div>
+      `).join('');
+      app.innerHTML = `<h2 class="section-title fadeInUp">My Work Portfolio</h2><div class="card-grid">${cards}</div>`;
+    } else if (page === 'about') {
+      app.innerHTML = `
+        <section class="container my-12 fadeInUp">
+          <h2 class="section-title mb-6">About Me</h2>
+          <div class="flex flex-col md:flex-row items-center gap-8">
+            <img src="https://placehold.co/400x400/333/FFF.png?text=Rizwi " class="rounded-full w-32 h-32 shadow-xl" />
+            <div class="md:text-left text-center">
+              <h3 class="text-xl font-bold mb-2">Rizwi Gul</h3>
+              <p>I'm Rizwi, a creative freelancer with over 5 years of experience helping creators and brands go viral. My mission is to deliver high-quality content quickly and affordably.</p>
+            </div>
+          </div>
+        </section>
+      `;
+    } else if (page === 'contact') {
+      app.innerHTML = `
+        <section class="container my-12 fadeInUp">
+          <h2 class="section-title mb-6">Get in Touch</h2>
+          <form class="max-w-3xl mx-auto" action="#">
+            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded bg-[#0E243F] text-white border-none outline-none mb-4">
+            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 rounded bg-[#0E243F] text-white border-none outline-none mb-4">
+            <textarea rows="5" placeholder="Tell us about your project..." class="w-full px-4 py-3 rounded bg-[#0E243F] text-white border-none outline-none mb-4"></textarea>
+            <button type="submit" class="bg-[#00F5FF] text-[#0A1A2F] px-6 py-3 rounded-full font-bold hover:bg-[#00cccc] transition">Send Message</button>
+          </form>
+        </section>
+      `;
+    }
 }
 
-document.getElementById("logoInput")?.addEventListener("change", function () {
-  const file = this.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      logoUrl = e.target.result;
-      const title = document.getElementById("site-title");
-      if (!title.querySelector("img")) {
-        const img = document.createElement("img");
-        img.id = "logo-img";
-        img.alt = "Logo";
-        title.prepend(img);
-      }
-      title.querySelector("img").src = logoUrl;
-    };
-    reader.readAsDataURL(file);
-  }
+function openSub(service) {
+  navigate(service);
+}
+
+function showPlanOptions(name, price, planId) {
+  const whatsappMsg = `Hi RizwiElite, I'd like to activate ${decodeURIComponent(name)} at ${price}`;
+  const emailHref = `mailto:rizwigul@gmail.com?subject=${name}%20Inquiry`;
+  const whatsappHref = `https://wa.me/+923325318695?text= ${encodeURIComponent(whatsappMsg)}`;
+
+  document.getElementById("whatsappLink").href = whatsappHref;
+  document.getElementById("emailLink").href = emailHref;
+  document.getElementById("planModal").classList.remove('hidden');
+}
+
+function closeModal() {
+  document.getElementById("planModal").classList.add('hidden');
+}
+
+// Theme Toggle
+document.getElementById("themeToggle").addEventListener("change", () => {
+  document.body.classList.toggle("dark", !document.getElementById("themeToggle").checked);
+  document.body.classList.toggle("light", document.getElementById("themeToggle").checked);
 });
 
-document.getElementById("themeToggle").addEventListener("click", () => {
-  darkMode = !darkMode;
-  render();
+// Initial Load
+window.addEventListener("DOMContentLoaded", () => {
+  navigate("home");
 });
-
-window.navigate = navigate;
-window.scrollToSection = scrollToSection;
-
-render();
