@@ -22,7 +22,6 @@ body.light {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth;
 }
 
 .container {
@@ -68,13 +67,13 @@ header {
 
 .hero {
   min-height: 100vh;
-  background: url('https://picsum.photos/1920/1080 ') no-repeat center center / cover;
+  background: url('https://picsum.photos/seed/mainbg/1920/1080 ') no-repeat center center / cover;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   position: relative;
-  transition: all 0.5s ease-in-out;
 }
 .hero::before {
   content: '';
@@ -87,13 +86,12 @@ header {
   font-size: 2.5rem;
   color: white;
   z-index: 10;
-  animation: fadeInUp 1s ease;
 }
 .hero p {
   font-size: 1.2rem;
-  opacity: 0.8;
+  color: #ccc;
+  margin-top: 0.5rem;
   z-index: 10;
-  animation: fadeInUp 1s ease 0.3s backwards;
 }
 .cta-btn {
   background: var(--cta);
@@ -111,7 +109,7 @@ header {
 
 .section-title {
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  margin: 2rem 0 1.5rem;
   color: var(--accent);
   text-align: center;
 }
@@ -182,7 +180,6 @@ header {
   justify-content: center;
   box-shadow: 0 4px 12px rgba(0,245,255,0.4);
   z-index: 999;
-  transition: transform 0.3s ease;
 }
 .floating-whatsapp:hover {
   transform: scale(1.1);
@@ -207,7 +204,6 @@ header {
   width: 90%;
   max-width: 500px;
   text-align: center;
-  animation: fadeInDown 0.4s ease;
 }
 .modal-content a {
   display: block;
@@ -279,21 +275,4 @@ input:checked + .slider:before {
 
 .hidden {
   display: none !important;
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.fadeInUp {
-  animation: fadeInUp 0.5s ease forwards;
-}
-.fadeInDown {
-  animation: fadeInDown 0.5s ease forwards;
 }
